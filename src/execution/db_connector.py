@@ -31,3 +31,32 @@ def test_connection():
 
 if __name__ == "__main__":
     test_connection()
+
+"""
+so this is what ive understood -: 
+load_dotenv() just looks for the .env file and gets all the environment 
+variables from it because we cant hard code them as then we'll be pushing
+sensitive info to git the get connection func is just creating an object
+that contains all environment variables in the test connection the conn
+variable just holds the object created above. and then we initialise a 
+cursor with that object as python and mysql cant communicate directly 
+but only through a cursor. now any sql query we run will be in the form 
+cursor.execute(query;) now the fetchall() gets the rows returned by the 
+last query and converts these tuples into a list of tuples so that we 
+can calculate its length and iterate over them easily as well and then 
+rest of the code is actually simple
+
+
+On get_connection() — it's not quite "creating an object that contains 
+all environment variables." It's actually opening a live network 
+connection to the MySQL server, using those environment variables as the
+login credentials. The object it returns (conn) represents that active 
+connection itself.
+
+
+The conn is the open connection/session; the cursor is the object you 
+actually use to send queries and pull results through that connection.
+You could have multiple cursors on the same connection running different 
+queries — the cursor is your "query executor," the connection is your
+"pipe to the database."
+"""    
