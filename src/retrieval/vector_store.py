@@ -4,6 +4,8 @@ have almost identical vectors. the dataset contains 'films' and 'length'
 but what if someone asked "List the movies(not films) with duration(not length)
 more than 2 hours.if chunks werent embedded, model wont know that film and
 movies are same. same for length and duration
+Also we generate context(tables and text related to query) part of the 
+prompt.prompt = context+orig ques+instruction
 """
 
 
