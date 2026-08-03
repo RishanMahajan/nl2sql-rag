@@ -12,6 +12,18 @@ def get_connection():
         database=os.getenv("MYSQL_DB"),
     )
 
+def execute_query(sql):
+    """Run a validated SELECT query and return rows as a list of dicts (column_name -> value)."""
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    try:
+        cursor.execute(sql)
+        return cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
+
 def test_connection():
     conn = get_connection()
     cursor = conn.cursor()
