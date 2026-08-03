@@ -29,7 +29,7 @@ def is_select_only(sql):
         if re.search(rf"\b{keyword}\b", stripped, re.IGNORECASE):
             return False, f"Forbidden keyword found: {keyword}."
             # if forbidden keyword is found, returns tuple (false,Forbidden keyword found: {keyword})
-    return True, #None else returns (True,none)
+    return True, None
 
 
 def extract_table_names(sql):
