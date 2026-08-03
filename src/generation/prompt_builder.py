@@ -51,6 +51,25 @@ Fix the query using only the schema above.
 SQL query:"""
 
 
+ANSWER_SYSTEM_PROMPT = """You answer questions in plain English using the given query results.
+
+Rules:
+- Answer in one or two short sentences.
+- Only use the data given below. Do not add outside information.
+- If the data is empty, say so directly instead of guessing.
+"""
+
+
+def build_answer_prompt(question, rows):
+    """Build the prompt for Stage 8: turn raw query result rows into a natural-language answer."""
+    return f"""Question: {question}
+
+Data:
+{rows}
+
+Answer:"""
+
+
 if __name__ == "__main__":
     import sys
     import os
